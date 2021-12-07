@@ -1,21 +1,35 @@
+
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+@import url(./components/App/App.css);
+@import url(./components/Header/Header.css);
+
+
 #root {
-  box-sizing: border-box;
-  font-family: 'Inter', Arial, sans-serif;
-  font-style: normal;
+  min-width: 320px;
+  max-width: 1280px;
+  min-height: 100vh;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  max-width: 1280px;
-  min-width: 320px;
-  min-height: 100vh;
-  position: relative;
-  width: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: "inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0 auto;
+  padding: 18px 70px 20px;
+
 }
 
 body {
   background-color: #fafafa;
   color: #000;
 }
+

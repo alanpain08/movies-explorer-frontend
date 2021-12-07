@@ -5,12 +5,7 @@ import Layout from '../Layout/Layout';
 import Main from '../Main/Main';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    name: '',
-    email: ''
-  });
 
-  
   return (
     <div className='App'>
       <Routes>
