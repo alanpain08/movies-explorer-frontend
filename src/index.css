@@ -2,7 +2,10 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
 @import url(./components/App/App.css);
+@import url(./components/Layout/Layout.css);
 @import url(./components/Header/Header.css);
+@import url(./components/Main/Promo/Promo.css);
+@import url(./components/Main/AboutProject/AboutProject.css);
 
 
 #root {
@@ -24,12 +27,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 18px 70px 20px;
-
 }
 
 body {
-  background-color: #fafafa;
   color: #000;
 }
 
