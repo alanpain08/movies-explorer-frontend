@@ -14,7 +14,7 @@
 
 .about__container {
   display: grid;
-  grid-template-columns: repeat(2, 550px);
+  grid-template-columns: repeat(2, minmax(284px, 550px));
   grid-template-rows: 24px 40px;
   gap: 26px 40px;
   margin-bottom: 110px;
@@ -36,7 +36,7 @@
 
 .about__visual {
   display: grid;
-  grid-template-columns: 228px 912px;
+  grid-template-columns: minmax(100px, 228px) minmax(184px, 912px);
   grid-template-rows: 36px 17px;
   row-gap: 14px;
   text-align: center;
@@ -48,8 +48,21 @@
   line-height: 1.21;
   color: white;
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__visual-quantity:last-of-type {
+  color: black;
+  background-color: #F2F2F2;
 }
 
 .about__visual-name {
+  color: #A0A0A0;
+  font-size: 14px;
+  line-height: 1.21;
   margin: 0;
 }
+
+

@@ -1,0 +1,13 @@
+.aboutme {
+  padding: 110px 70px 100px;
+}
+
+.aboutme__title {
+  border-bottom: 1px solid black;
+  margin: 0 0 70px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 1.21;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+}
