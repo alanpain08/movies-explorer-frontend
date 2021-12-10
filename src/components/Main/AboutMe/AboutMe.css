@@ -1,5 +1,7 @@
 .aboutme {
   padding: 110px 70px 100px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .aboutme__title {
@@ -10,4 +12,52 @@
   line-height: 1.21;
   letter-spacing: -0.04em;
   font-weight: 400;
+  width: 100%;
+}
+
+.aboutme___name {
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin: 0;
+}
+
+.aboutme__text-container {
+  max-width: 600px;
+}
+
+.aboutme__info {
+  font-size: 18px;
+  line-height: 1.11;
+  font-weight: 500;
+  margin: 18px 0 26px;
+}
+
+.aboutme__bio {
+  font-size: 14px;
+  line-height: 1.57;
+  margin: 0 0 99px;
+}
+
+.aboutme__link-container {
+  max-width: 132px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aboutme__link {
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+}
+
+.aboutme__photo-container {
+  width: 270px;
+  height: 327px;
+  margin-left: auto;
+  background-image: url(../../../images/photo.svg);
+  background-size: contain;
 }
