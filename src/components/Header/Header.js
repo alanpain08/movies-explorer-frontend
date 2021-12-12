@@ -1,28 +1,45 @@
 import headerLogo from '../../images/headerLogo.svg';
-import { Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, NavLink, useLocation } from 'react-router-dom';
 
-function Header(props) {
+function Header() {
   let location = useLocation();
 
   return (
-    <header className={`${location.pathname === '/' ? "header" : "header header__active"}`}>
-      <Link to='/' className='header__logo-link'>
-        <img src={headerLogo} alt="логотип страницы" className="header__logo" />
+    <header
+      className={`${
+        location.pathname === '/' ? 'header' : 'header header__logged'
+      }`}
+    >
+      <Link to='/'>
+        <img src={headerLogo} alt='логотип страницы' className='header__logo' />
       </Link>
 
-      <div className="header__nav">
-        <Routes>
-          <Route path='/' element={<><Link to='/signup' className="header__text">Регистрация</Link>
-            <Link to='/signin'>
-              <button className="header__button">
-                Войти
-              </button>
+      <div className={`${
+        location.pathname === '/' ? 'header__nav' : 'header__nav header__nav-logged'
+      }`}>
+        {location.pathname === '/' ? (
+          <>
+            <Link to='/signup' className='header__link-main'>
+              Регистрация
             </Link>
-          </>} />
-        </Routes>
+            <Link to='/signin'>
+              <button className='header__button-main'>Войти</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <nav className='header__movies-nav'>
+                <NavLink className='header__movies-link' to='/movies'>Фильмы</NavLink>
+                <NavLink className='header__movies-link' to='/saved-movies'>Сохраненные фильмы</NavLink>
+            </nav>
+            <Link to='/profile'>
+              <button className='header__button-profile'>Аккаунт</button>
+            </Link>
+          </>
+        )}
       </div>
     </header>
-  )
+  );
 }
 
 export default Header;

@@ -11,8 +11,9 @@ function AboutMe() {
           <a className='aboutme__link' href='facebook.com' target='_blank' title='ссылка на facebook'>Facebook</a>
           <a className='aboutme__link' href='github.com' target='_blank' title='ссылка на github'>Github</a>
         </div>
-        <div className='aboutme__photo-container'></div>
+
       </div>
+      <div className='aboutme__photo-container'></div>
     </section>
   )
 }

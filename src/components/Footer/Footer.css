@@ -1,13 +1,10 @@
 .footer {
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  box-sizing: border-box;
   padding: 79px 70px 20px;
-  background-color: #f8f8f8;
 }
 
 .footer__title {
@@ -20,7 +17,6 @@
 
 .footer__container {
   display: flex;
-  flex-direction: row;
   padding-top: 20px;
   border-top: 1px solid #e8e8e8;
   justify-content: space-between;
@@ -32,19 +28,16 @@
   margin: 0;
   font-size: 13px;
   line-height: 1.21;
-  font-weight: 400;
 }
 
 .footer__menu_link {
   font-size: 13px;
   line-height: 1.21;
-  font-weight: 400;
   text-decoration: none;
   margin-right: 20px;
-  color: #000;
+  color: black;
 }
 
-.footer__menu_link:last-child {
+.footer__menu_link:last-of-type {
   margin-right: 0;
-  color: #000;
 }
