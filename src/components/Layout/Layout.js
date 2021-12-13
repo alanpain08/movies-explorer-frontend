@@ -11,7 +11,7 @@ function Layout() {
 
       <Footer />
     </>
-  )
+  );
 }
 
 export default Layout;

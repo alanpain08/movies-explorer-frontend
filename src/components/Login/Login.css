@@ -1,4 +1,4 @@
-.register {
+.login {
   padding: 70px 0 70px;
   display: flex;
   flex-direction: column;
@@ -6,34 +6,34 @@
   justify-content: center;
 }
 
-.register__container {
+.login__container {
   width: 100%;
   max-width: 396px;
 }
 
-.register__header-title {
+.login__header-title {
   margin: 40px 0 40px;
   font-weight: 500;
   font-size: 24px;
   line-height: 1.21;
 }
 
-.register__form-input-label {
+.login__form-input-label {
   font-size: 10px;
   line-height: 1.21;
   color: #a0a0a0;
   margin: 0 0 10px;
 }
 
-.register__form-li {
+.login__form-li {
   margin-bottom: 20px;
 }
 
-.register__form-li:last-of-type {
+.login__form-li:last-of-type {
   margin-bottom: 0;
 }
 
-.register__form-input {
+.login__form-input {
   border: 0;
   padding: 0;
   background-color: #f9f9f9;
@@ -44,7 +44,7 @@
   padding: 15px;
   box-sizing: border-box;
 }
-.register__form-button {
+.login__form-button {
   width: 100%;
   height: 45px;
   border: 0;
@@ -58,7 +58,7 @@
   margin-top: 69px;
 }
 
-.register__link-container {
+.login__link-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,18 +67,18 @@
   line-height: 1.21;
 }
 
-.register__link-container-text {
+.login__link-container-text {
   margin: 0;
   color: #a0a0a0;
 }
 
-.register__link-container-signin {
+.login__link-container-signup {
   color: black;
   margin-left: 6px;
   text-decoration: none;
 }
 
-.register__link-container-signin:hover {
+.login__link-container-signup:hover {
   opacity: 0.6;
   transition: linear 0.3s;
 }

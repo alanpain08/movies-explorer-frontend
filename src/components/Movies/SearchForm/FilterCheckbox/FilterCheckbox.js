@@ -1,12 +1,12 @@
 function FilterCheckbox() {
-    return (
-      <div className="filter">
-        <div className="filter__container">
-          <input className="filter__checkbox" type="checkbox"></input>
-          <p className="filter__title">Короткометражки</p>
-        </div>
+  return (
+    <div className='filter'>
+      <div className='filter__container'>
+        <input className='filter__checkbox' type='checkbox'></input>
+        <p className='filter__title'>Короткометражки</p>
       </div>
-    );
-  };
-  
-  export default FilterCheckbox;
+    </div>
+  );
+}
+
+export default FilterCheckbox;

@@ -9,7 +9,7 @@ function Movies() {
       <MoviesCardList />
       <MoreButton />
     </main>
-  )
-};
+  );
+}
 
 export default Movies;

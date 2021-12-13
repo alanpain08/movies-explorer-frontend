@@ -7,9 +7,7 @@ function SavedMovies() {
       <SearchForm />
       <MoviesCardList />
     </main>
-  )
-
-};
+  );
+}
 
 export default SavedMovies;
-

@@ -7,9 +7,8 @@ function LayoutProfile() {
       <Header />
 
       <Outlet />
-
     </>
-  )
+  );
 }
 
 export default LayoutProfile;

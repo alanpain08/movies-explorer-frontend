@@ -1,5 +1,4 @@
-import { Routes, Route, Link } from 'react-router';
-import { useState } from 'react';
+import { Routes, Route } from 'react-router';
 import './App.css';
 import Layout from '../Layout/Layout';
 import Main from '../Main/Main';
@@ -8,10 +7,10 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import LayoutProfile from '../LayoutProfile/LayoutProfile';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-
   return (
     <div className='App'>
       <Routes>
@@ -32,7 +31,9 @@ function App() {
         </Route>
 
         <Route path='/signup' element={<Register />} />
+        <Route path='/signin' element={<Login />} />
 
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );

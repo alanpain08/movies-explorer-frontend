@@ -18,12 +18,9 @@
 }
 
 .header__nav {
-  font-size: 12;
-  line-height: 1.33;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 500;
 }
 
 .header__nav-logged {
@@ -54,6 +51,9 @@
 
 .header__link-main {
   text-decoration: none;
+  font-size: 12;
+  line-height: 1.33;
+  font-weight: 500;
 }
 
 .header__button-main {
@@ -65,6 +65,9 @@
   padding: 0;
   background-color: black;
   margin-left: 30px;
+  font-size: 12;
+  line-height: 1.33;
+  font-weight: 500;
 }
 
 .header__button-profile {
@@ -87,5 +90,24 @@
 @media screen and (max-width: 830px) {
   .header {
     padding: 18px 30px 318px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .header {
+    padding: 5.625% 4.375% 62.8125%;
+  }
+
+  .header__link-main {
+    font-size: 10;
+    line-height: 1.6;
+  }
+
+  .header__button-main {
+    width: 54px;
+    height: 26px;
+    margin-left: 14px;
+    font-size: 10;
+    line-height: 1.6;
   }
 }
