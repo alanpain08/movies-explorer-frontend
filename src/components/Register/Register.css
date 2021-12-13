@@ -1,0 +1,38 @@
+.register {
+  padding: 70px 0 70px;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.register__container {
+  width: 100%;
+  max-width: 396px;
+}
+
+.register__header-title {
+  margin: 40px 0 40px;
+  font-weight: 500;
+font-size: 24px;
+line-height: 1.21;
+}
+
+.register__form-input-label {
+  font-size: 10px;
+  line-height: 1.21;
+  color: #A0A0A0;
+  margin: 0 0 10px;
+}
+
+.register__form-input {
+  border: 0;
+  padding: 0;
+  background-color: #F9F9F9;
+border-radius: 8px;
+max-height: 46px;
+width: 100%;
+padding: 15px;
+margin-bottom: 20px;
+}
+

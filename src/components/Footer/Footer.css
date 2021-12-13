@@ -30,7 +30,7 @@
   line-height: 1.21;
 }
 
-.footer__menu_link {
+.footer__menu-link {
   font-size: 13px;
   line-height: 1.21;
   text-decoration: none;
@@ -38,6 +38,6 @@
   color: black;
 }
 
-.footer__menu_link:last-of-type {
+.footer__menu-link:last-of-type {
   margin-right: 0;
 }

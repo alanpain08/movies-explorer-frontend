@@ -8,7 +8,7 @@ function Footer() {
         <p className='copyright'>&#169; {new Date().getFullYear()}</p>
         <nav className='footer__menu'>
           <a
-            className='link footer__menu_link'
+            className='footer__menu-link'
             href='https://praktikum.yandex.ru/'
             target='_blank'
             rel='noreferrer'
@@ -16,7 +16,7 @@ function Footer() {
             Яндекс.Практикум
           </a>
           <a
-            className='link footer__menu_link'
+            className='footer__menu-link'
             href='http://github.com'
             target='_blank'
             rel='noreferrer'
@@ -24,7 +24,7 @@ function Footer() {
             Github
           </a>
           <a
-            className='link footer__menu_link'
+            className='link footer__menu-link'
             href='http://facebook.com'
             target='_blank'
             rel='noreferrer'
