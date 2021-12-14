@@ -23,3 +23,29 @@
   color: black;
   font-size: 14px;
 }
+
+@media screen and (max-width: 768px) {
+  .not-found {
+    padding: 408px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .not-found {
+    padding: 329px 10px 0;
+  }
+
+  .not-found__title {
+    font-size: 80px;
+    margin: 0 0 10px;
+  }
+
+  .not-found__subtitle {
+    font-size: 12px;
+    margin: 0 0 284px;
+  }
+
+  .not-found__button-back {
+    font-size: 12px;
+  }
+}

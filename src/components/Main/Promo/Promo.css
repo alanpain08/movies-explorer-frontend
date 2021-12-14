@@ -26,7 +26,7 @@
 
 @media screen and (max-width: 830px) {
   .promo {
-    align-content: center;
+    align-items: center;
     padding: 0 5.729% 9.114%;
   }
 
@@ -39,19 +39,7 @@
   .promo__image-container {
     width: 680px;
     height: 230px;
-    align-self: none;
-  }
-}
-
-@media screen and (max-width: 730px) {
-  .promo__image-container {
-    width: 600px;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .promo__image-container {
-    width: 500px;
+    align-self: center;
   }
 }
 

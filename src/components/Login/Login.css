@@ -1,5 +1,5 @@
 .login {
-  padding: 70px 0 70px;
+  padding: 70px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,4 +81,41 @@
 .login__link-container-signup:hover {
   opacity: 0.6;
   transition: linear 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    padding: 232px 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .login {
+    padding: 56px 0 30px;
+  }
+
+  .login__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login__container {
+    max-width: 260px;
+  }
+
+  .login__header-title {
+    margin: 50px 0 80px;
+    font-weight: 500;
+  }
+
+  .login__form-button {
+    margin-top: 157px;
+  }
+
+  .login__link-container {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.21;
+  }
 }

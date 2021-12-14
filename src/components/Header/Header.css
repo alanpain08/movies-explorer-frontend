@@ -91,11 +91,19 @@
   .header {
     padding: 18px 30px 318px;
   }
+
+  .header__logged {
+    padding: 18px 30px;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 510px) {
   .header {
     padding: 18px 14px 201px;
+  }
+
+  .header__logged {
+    padding: 18px 14px;
   }
 
   .header__link-main {

@@ -13,7 +13,7 @@ function Login() {
               className='login__header-logo'
             />
           </Link>
-          <h1 className='login__header-title'>Добро пожаловать!</h1>
+          <h1 className='login__header-title'>Рады видеть!</h1>
         </div>
         <form className='login__form'>
           <div className='login__form-li'>

@@ -44,3 +44,21 @@
 .filter__checkbox:checked::before {
   left: 22px;
 }
+
+@media screen and (max-width: 768px) {
+  .filter__container {
+    padding: 42px 0 51px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .filter__container {
+    padding: 42px 0 49px;
+  }
+
+  .filter__title {
+    margin: 0 0 0 13px;
+    font-size: 11px;
+    line-height: 1.63;
+  }
+}
