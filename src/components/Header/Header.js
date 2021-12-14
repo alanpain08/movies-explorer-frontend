@@ -6,20 +6,18 @@ function Header() {
 
   return (
     <header
-      className={`${
-        location.pathname === '/' ? 'header' : 'header header__logged'
-      }`}
+      className={`${location.pathname === '/' ? 'header' : 'header header__logged'
+        }`}
     >
       <Link to='/'>
         <img src={headerLogo} alt='логотип страницы' className='header__logo' />
       </Link>
 
       <div
-        className={`${
-          location.pathname === '/'
+        className={`${location.pathname === '/'
             ? 'header__nav'
             : 'header__nav header__nav-logged'
-        }`}
+          }`}
       >
         {location.pathname === '/' ? (
           <>

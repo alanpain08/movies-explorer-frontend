@@ -41,3 +41,9 @@
 .footer__menu-link:last-of-type {
   margin-right: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 79px 30px 20px;
+  }
+}

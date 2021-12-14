@@ -3,7 +3,7 @@ function AboutMe() {
     <section className='aboutme'>
       <h3 className='aboutme__title'>Студент</h3>
       <div className='aboutme__text-container'>
-        <h3 className='aboutme___name'>Алан</h3>
+        <h2 className='aboutme___name'>Алан</h2>
         <p className='aboutme__info'>Фронтренд-разработчик, 26 лет</p>
         <p className='aboutme__bio'>
           Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня

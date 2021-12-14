@@ -93,9 +93,9 @@
   }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (min-width: 320px) and (max-width: 510px) {
   .header {
-    padding: 5.625% 4.375% 62.8125%;
+    padding: 18px 14px 201px;
   }
 
   .header__link-main {

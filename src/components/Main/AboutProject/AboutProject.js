@@ -3,12 +3,12 @@ function AboutProject() {
     <section className='about'>
       <h3 className='about__title'>О проекте</h3>
       <div className='about__container'>
-        <h3 className='about__container-header'>
+        <p className='about__container-header'>
           Дипломный проект включал 5 этапов
-        </h3>
-        <h3 className='about__container-header'>
+        </p>
+        <p className='about__container-header about__container-header_second'>
           На выполнение диплома ушло 5 недель
-        </h3>
+        </p>
         <p className='about__container-text'>
           Составление плана, работу над бэкендом, вёрстку, добавление
           функциональности и финальные доработки.
