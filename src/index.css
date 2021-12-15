@@ -19,6 +19,7 @@
 @import url(./components/Register/Register.css);
 @import url(./components/Login/Login.css);
 @import url(./components/NotFound/NotFound.css);
+@import url(./components/Header/BurgerMenu/BurgerMenu.css);
 
 #root {
   min-width: 320px;

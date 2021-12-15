@@ -21,7 +21,7 @@ function MoviesCard() {
         ></button>
       </div>
 
-      <img className='movies-card__img' src={movie} alt='картинка' />
+      <img className='movies-card__img' src='https://cs8.pikabu.ru/post_img/2017/04/25/1/1493077900184378652.jpg' alt='картинка' />
     </li>
   );
 }

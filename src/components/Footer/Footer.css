@@ -36,6 +36,11 @@
   text-decoration: none;
   margin-right: 20px;
   color: black;
+  transition: all 150ms ease-in-out;
+}
+
+.footer__menu-link:hover {
+  box-shadow: 0 0 10px 0 #2e2230 inset, 0 0 10px 4px #2e2230;
 }
 
 .footer__menu-link:last-of-type {

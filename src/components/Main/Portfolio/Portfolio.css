@@ -34,6 +34,11 @@
   align-items: center;
   height: 50px;
   width: 100%;
+  transition: all 150ms ease-in-out;
+}
+
+.portfolio__link:hover {
+  box-shadow: 0 0 10px 0 #2e2230 inset, 0 0 10px 4px #2e2230;
 }
 
 .portfolio__link-text {
@@ -98,7 +103,5 @@
       line-height: 1.428;
       margin: 0 0 40px;
     }
-
-
   }
 }

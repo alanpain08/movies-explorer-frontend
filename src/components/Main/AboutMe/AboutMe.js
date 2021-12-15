@@ -15,17 +15,19 @@ function AboutMe() {
         <nav className='aboutme__link-container'>
           <a
             className='aboutme__link'
-            href='facebook.com'
+            href='https://www.facebook.com'
             target='_blank'
             title='ссылка на facebook'
+            rel='noreferrer'
           >
             Facebook
           </a>
           <a
             className='aboutme__link'
-            href='github.com'
+            href='https://github.com/'
             target='_blank'
             title='ссылка на github'
+            rel='noreferrer'
           >
             Github
           </a>

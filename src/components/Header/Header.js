@@ -1,8 +1,18 @@
 import headerLogo from '../../images/headerLogo.svg';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import BurgerMenu from './BurgerMenu/BurgerMenu';
 
 function Header() {
   let location = useLocation();
+
+  const isMobileDevice = useMediaQuery({
+    query: "(min-width: 320px)",
+  });
+
+  const isTabletDevice = useMediaQuery({
+    query: "(max-width: 770px)",
+  });
 
   return (
     <header
@@ -28,20 +38,20 @@ function Header() {
               <button className='header__button-main'>Войти</button>
             </Link>
           </>
-        ) : (
-          <>
-            <nav className='header__movies-nav'>
-              <NavLink className='header__movies-link' to='/movies'>
-                Фильмы
-              </NavLink>
-              <NavLink className='header__movies-link' to='/saved-movies'>
-                Сохраненные фильмы
-              </NavLink>
-            </nav>
-            <Link to='/profile'>
-              <button className='header__button-profile'>Аккаунт</button>
-            </Link>
-          </>
+        ) : ( (isTabletDevice && isMobileDevice) ? <BurgerMenu /> : (<>
+          <nav className='header__movies-nav'>
+            <NavLink className='header__movies-link' to='/movies'>
+              Фильмы
+            </NavLink>
+            <NavLink className='header__movies-link' to='/saved-movies'>
+              Сохраненные фильмы
+            </NavLink>
+          </nav>
+          <Link to='/profile'>
+            <button className='header__button-profile'>Аккаунт</button>
+          </Link>
+        </>)
+          
         )}
       </div>
     </header>

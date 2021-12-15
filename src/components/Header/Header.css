@@ -15,6 +15,11 @@
   width: 38px;
   height: 38px;
   margin: auto;
+  transition: all 150ms ease-in-out;
+}
+
+.header__logo:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
 }
 
 .header__nav {
@@ -39,6 +44,11 @@
   color: black;
   text-decoration: none;
   font-weight: 400;
+  transition: all 150ms ease-in-out;
+}
+
+.header__movies-link:hover {
+  box-shadow: 0 0 10px 0 #453f46 inset, 0 0 10px 4px #453f46;
 }
 
 .header__movies-link:last-of-type {
@@ -54,6 +64,12 @@
   font-size: 12;
   line-height: 1.33;
   font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__link-main:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
+  cursor: pointer;
 }
 
 .header__button-main {
@@ -68,6 +84,12 @@
   font-size: 12;
   line-height: 1.33;
   font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__button-main:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
+  cursor: pointer;
 }
 
 .header__button-profile {
@@ -81,6 +103,12 @@
   font-size: 14px;
   line-height: 1.14;
   font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__button-profile:hover {
+  box-shadow: 0 0 10px 0 #2e2230 inset, 0 0 10px 4px #2e2230;
+  cursor: pointer;
 }
 
 .header__button:hover {
