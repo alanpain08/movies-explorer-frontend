@@ -25,8 +25,8 @@ function Header() {
 
       <div
         className={`${location.pathname === '/'
-            ? 'header__nav'
-            : 'header__nav header__nav-logged'
+          ? 'header__nav'
+          : 'header__nav header__nav-logged'
           }`}
       >
         {location.pathname === '/' ? (
@@ -38,7 +38,7 @@ function Header() {
               <button className='header__button-main'>Войти</button>
             </Link>
           </>
-        ) : ( (isTabletDevice && isMobileDevice) ? <BurgerMenu /> : (<>
+        ) : ((isTabletDevice && isMobileDevice) ? <BurgerMenu /> : (<>
           <nav className='header__movies-nav'>
             <NavLink className='header__movies-link' to='/movies'>
               Фильмы
@@ -51,7 +51,7 @@ function Header() {
             <button className='header__button-profile'>Аккаунт</button>
           </Link>
         </>)
-          
+
         )}
       </div>
     </header>
