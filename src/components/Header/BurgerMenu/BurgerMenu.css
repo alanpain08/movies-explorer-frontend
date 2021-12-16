@@ -39,7 +39,7 @@
   width: 520px;
   height: 100%;
   margin: 0;
-  padding: 159px 90px 0;
+  padding: 159px 90px 90px;
   list-style: none;
   background-color: white;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
@@ -87,7 +87,7 @@
 }
 
 .menu-item__button-profile {
-  margin-top: 621px;
+  margin-top: 521px;
 }
 
 @media screen and (max-width: 760px) {

@@ -1,9 +1,9 @@
-import movie from '../../../images/movie.svg';
-
 import { useLocation } from 'react-router-dom';
 
-function MoviesCard() {
+function MoviesCard(props) {
   let location = useLocation();
+
+
 
   return (
     <li className='movies-card'>
@@ -13,15 +13,14 @@ function MoviesCard() {
           <p className='movies-card__timing'>1ч 47м</p>
         </div>
         <button
-          className={`${
-            location.pathname === '/movies'
-              ? 'movies-card__button movies-card__button_save'
-              : 'movies-card__button movies-card__button_delete'
-          }`}
+          className={`${location.pathname === '/movies'
+            ? `${props.isSaved ? 'movies-card__button movies-card__button_saved' : 'movies-card__button movies-card__button_save'}`
+            : 'movies-card__button movies-card__button_delete'
+            }`}
         ></button>
       </div>
 
-      <img className='movies-card__img' src='https://cs8.pikabu.ru/post_img/2017/04/25/1/1493077900184378652.jpg' alt='картинка' />
+      <img className='movies-card__img' src='https://pbs.twimg.com/media/EEaoKjRXUAAI82W.jpg' alt='картинка' />
     </li>
   );
 }

@@ -4,7 +4,7 @@ function MoviesCardList(props) {
   return (
     <section className='movies-cards'>
       <ul className='movies-cards__container'>
-        <MoviesCard />
+        <MoviesCard isSaved={props.isSaved} />
         <MoviesCard />
         <MoviesCard />
         <MoviesCard />

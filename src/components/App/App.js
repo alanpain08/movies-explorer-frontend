@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router';
+import { useState } from 'react';
 import './App.css';
 import Layout from '../Layout/Layout';
 import Main from '../Main/Main';
@@ -11,6 +12,7 @@ import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 
 function App() {
+  const [isSaved, setIsSaved] = useState(true);
   return (
     <div className='App'>
       <Routes>
@@ -19,7 +21,7 @@ function App() {
         </Route>
 
         <Route path='/movies' element={<Layout />}>
-          <Route index element={<Movies />} />
+          <Route index element={<Movies isSaved={isSaved} />} />
         </Route>
 
         <Route path='/saved-movies' element={<Layout />}>

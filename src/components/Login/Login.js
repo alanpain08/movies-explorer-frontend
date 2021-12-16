@@ -20,10 +20,11 @@ function Login() {
             <p className='login__form-input-label'>E-mail</p>
             <input
               type='email'
-              value='pochta@yandex.ru'
+              defaultValue='pochta@yandex.ru'
               className='login__form-input'
               required
             />
+            <span className='login__form-input-error'></span>
           </div>
           <div className='login__form-li'>
             <p className='login__form-input-label'>Пароль</p>

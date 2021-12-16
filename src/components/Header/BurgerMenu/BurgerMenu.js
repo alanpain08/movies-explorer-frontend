@@ -4,11 +4,11 @@ function BurgerMenu() {
   return (
     <div className='burger-menu'>
       <input id='menu-toggle' type='checkbox' />
-      <label className='menu-btn' for='menu-toggle'>
+      <label className='menu-btn' htmlFor='menu-toggle'>
         <span></span>
       </label>
 
-      <ul class='menubox'>
+      <ul className='menubox'>
         <li>
           <NavLink
             to='/'
@@ -40,7 +40,7 @@ function BurgerMenu() {
           </NavLink>
         </li>
         <li>
-        <Link to='/profile'>
+          <Link to='/profile'>
             <button className='header__button-profile menu-item__button-profile'>Аккаунт</button>
           </Link>
         </li>

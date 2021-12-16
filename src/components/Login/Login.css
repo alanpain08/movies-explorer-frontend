@@ -55,7 +55,13 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  margin-top: 69px;
+  margin-top: 179px;
+}
+
+.login__form-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: linear 0.3s;
 }
 
 .login__link-container {
@@ -110,7 +116,7 @@
   }
 
   .login__form-button {
-    margin-top: 157px;
+    margin-top: 267px;
   }
 
   .login__link-container {

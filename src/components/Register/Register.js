@@ -20,19 +20,21 @@ function Register() {
             <p className='register__form-input-label'>Имя</p>
             <input
               type='text'
-              value='Виталий'
+              defaultValue='Виталий'
               className='register__form-input'
               required
             />
+            <span className='register__form-input-error'></span>
           </div>
           <div className='register__form-li'>
             <p className='register__form-input-label'>E-mail</p>
             <input
               type='email'
-              value='pochta@yandex.ru'
+              defaultValue='pochta@yandex.ru'
               className='register__form-input'
               required
             />
+            <span className='register__form-input-error'></span>
           </div>
           <div className='register__form-li'>
             <p className='register__form-input-label'>Пароль</p>

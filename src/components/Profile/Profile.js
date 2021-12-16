@@ -11,6 +11,7 @@ function Profile() {
               placeholder='Виталий'
               className='profile__form-input'
               required
+              disabled
             />
           </div>
           <div className='profile__form-li'>
@@ -20,6 +21,7 @@ function Profile() {
               placeholder='pochta@yandex.ru'
               className='profile__form-input'
               required
+              disabled
             />
           </div>
 

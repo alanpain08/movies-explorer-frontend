@@ -24,7 +24,7 @@ function AboutMe() {
           </a>
           <a
             className='aboutme__link'
-            href='https://github.com/'
+            href='https://github.com/alanpain08'
             target='_blank'
             title='ссылка на github'
             rel='noreferrer'
