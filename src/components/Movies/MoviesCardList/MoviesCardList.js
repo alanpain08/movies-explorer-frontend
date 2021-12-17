@@ -1,10 +1,10 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList(props) {
+function MoviesCardList({ isSaved, isLoading }) {
   return (
     <section className='movies-cards'>
       <ul className='movies-cards__container'>
-        <MoviesCard isSaved={props.isSaved} />
+        <MoviesCard isSaved={isSaved} />
         <MoviesCard />
         <MoviesCard />
         <MoviesCard />
@@ -17,6 +17,7 @@ function MoviesCardList(props) {
         <MoviesCard />
         <MoviesCard />
       </ul>
+
     </section>
   );
 }

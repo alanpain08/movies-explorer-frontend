@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-function MoviesCard(props) {
+function MoviesCard({ isSaved }) {
   let location = useLocation();
 
 
@@ -14,7 +14,7 @@ function MoviesCard(props) {
         </div>
         <button
           className={`${location.pathname === '/movies'
-            ? `${props.isSaved ? 'movies-card__button movies-card__button_saved' : 'movies-card__button movies-card__button_save'}`
+            ? `${isSaved ? 'movies-card__button movies-card__button_saved' : 'movies-card__button movies-card__button_save'}`
             : 'movies-card__button movies-card__button_delete'
             }`}
         ></button>

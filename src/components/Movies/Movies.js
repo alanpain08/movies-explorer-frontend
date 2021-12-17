@@ -1,14 +1,19 @@
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import MoreButton from './MoreButton/MoreButton';
+import Preloader from '../Preloader/Preloader';
 
-function Movies(props) {
+function Movies({ isSaved, isLoading }) {
   return (
     <main className='movies'>
       <SearchForm />
-      <MoviesCardList isSaved={props.isSaved} />
-      <MoreButton />
+      {isLoading ? (<Preloader />) : (
+        <>
+          <MoviesCardList {...{ isSaved, isLoading }} />
+          <MoreButton />
+        </>)}
     </main>
+
   );
 }
 

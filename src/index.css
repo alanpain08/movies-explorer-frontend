@@ -20,6 +20,7 @@
 @import url(./components/Login/Login.css);
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/Header/BurgerMenu/BurgerMenu.css);
+@import url(./components/Preloader/Preloader.css);
 
 #root {
   min-width: 320px;
