@@ -48,7 +48,7 @@
 .register__form-input-error {
   font-size: 10px;
   line-height: 1.21;
-  color: #FF4062;
+  color: #ff4062;
   margin: 10px 0 0;
 }
 
@@ -125,6 +125,7 @@
 
   .register__form-button {
     margin-top: 157px;
+    font-size: 12px;
   }
 
   .register__link-container {

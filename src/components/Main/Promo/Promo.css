@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 700px) {
   .promo__image-container {
-    width: 80%;
+    width: 100%;
   }
 }
 
@@ -63,7 +63,6 @@
   }
 
   .promo__image-container {
-    width: 320px;
     background-image: url('../../../images/promoImage.svg');
     background-position: center;
     background-size: cover;

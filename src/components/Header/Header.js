@@ -35,7 +35,7 @@ function Header() {
               Регистрация
             </Link>
             <Link to='/signin'>
-              <button className='header__button-main'>Войти</button>
+              <button type='button' className='header__button-main'>Войти</button>
             </Link>
           </>
         ) : ((isTabletDevice && isMobileDevice) ? <BurgerMenu /> : (<>

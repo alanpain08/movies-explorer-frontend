@@ -11,6 +11,10 @@
   border-radius: 40px;
 }
 
+.search__form-container:hover {
+  outline: 1px solid black;
+}
+
 .search__form-input {
   height: 46px;
   border: 0;
@@ -32,6 +36,11 @@
   padding: 0;
   border: 0;
   margin-right: 6px;
+}
+
+.search__form-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {
