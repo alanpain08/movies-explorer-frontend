@@ -1,0 +1,149 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3c1f8;
+  padding: 1.41% 5.47%;
+}
+
+.header__logged {
+  background-color: white;
+}
+
+.header__logo {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  margin: auto;
+  transition: all 150ms ease-in-out;
+}
+
+.header__logo:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__nav-logged {
+  width: 59.3%;
+}
+
+.header__movies-nav {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.header__movies-link {
+  font-size: 13px;
+  line-height: 1.38;
+  color: black;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 150ms ease-in-out;
+}
+
+.header__movies-link:hover {
+  box-shadow: 0 0 10px 0 #453f46 inset, 0 0 10px 4px #453f46;
+}
+
+.header__movies-link:last-of-type {
+  margin-left: 16px;
+}
+
+.active {
+  font-weight: 500;
+}
+
+.header__link-main {
+  text-decoration: none;
+  font-size: 12;
+  line-height: 1.33;
+  font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__link-main:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
+  cursor: pointer;
+}
+
+.header__button-main {
+  width: 76px;
+  height: 32px;
+  color: white;
+  border-radius: 3px;
+  border: 0;
+  padding: 0;
+  background-color: black;
+  margin-left: 30px;
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__button-main:hover {
+  box-shadow: 0 0 10px 0 #2a032e inset, 0 0 10px 4px #2a032e;
+  cursor: pointer;
+}
+
+.header__button-profile {
+  width: 100px;
+  height: 32px;
+  color: black;
+  border-radius: 20px;
+  border: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  line-height: 1.14;
+  font-weight: 500;
+  transition: all 150ms ease-in-out;
+}
+
+.header__button-profile:hover {
+  box-shadow: 0 0 10px 0 #2e2230 inset, 0 0 10px 4px #2e2230;
+  cursor: pointer;
+}
+
+.header__button:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 830px) {
+  .header {
+    padding: 18px 30px 318px;
+  }
+
+  .header__logged {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 510px) {
+  .header {
+    padding: 18px 14px 201px;
+  }
+
+  .header__logged {
+    padding: 18px 14px;
+  }
+
+  .header__link-main {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .header__button-main {
+    width: 54px;
+    height: 26px;
+    margin-left: 14px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}
