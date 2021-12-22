@@ -1,4 +1,4 @@
-function Profile() {
+function Profile({currentUser, signOut}) {
   return (
     <section className='profile'>
       <div className='profile__container'>
@@ -8,7 +8,7 @@ function Profile() {
             <p className='profile__form-input-label'>Имя</p>
             <input
               type='text'
-              placeholder='Виталий'
+              placeholder={currentUser.name}
               className='profile__form-input'
               required
               disabled
@@ -18,7 +18,7 @@ function Profile() {
             <p className='profile__form-input-label'>E-mail</p>
             <input
               type='email'
-              placeholder='pochta@yandex.ru'
+              placeholder={currentUser.email}
               className='profile__form-input'
               required
               disabled
@@ -31,6 +31,7 @@ function Profile() {
           <button
             type='button'
             className='profile__button profile__button_logout'
+            onClick={signOut}
           >
             Выйти из аккаунта
           </button>

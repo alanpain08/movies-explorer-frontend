@@ -1,7 +1,24 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import headerLogo from '../../images/headerLogo.svg';
 
-function Login() {
+function Login({ handleSubmitLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleSubmitLogin(email, password);
+  }
+
   return (
     <section className='login'>
       <div className='login__container'>
@@ -15,12 +32,13 @@ function Login() {
           </Link>
           <h1 className='login__header-title'>Рады видеть!</h1>
         </div>
-        <form className='login__form'>
+        <form className='login__form' onSubmit={handleSubmit}>
           <div className='login__form-li'>
             <p className='login__form-input-label'>E-mail</p>
             <input
               type='email'
-              defaultValue='pochta@yandex.ru'
+              onChange={handleChangeEmail}
+              value={email}
               className='login__form-input'
               required
             />
@@ -28,7 +46,13 @@ function Login() {
           </div>
           <div className='login__form-li'>
             <p className='login__form-input-label'>Пароль</p>
-            <input type='password' className='login__form-input' required />
+            <input
+              type='password'
+              className='login__form-input'
+              required
+              onChange={handleChangePassword}
+              value={password}
+            />
             <span className='login__form-input-error'></span>
           </div>
           <button type='submit' className='login__form-button'>

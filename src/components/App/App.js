@@ -42,7 +42,7 @@ function App() {
           const ownerCards = userMovies.filter(
             (c) => c.owner === userInfo._id && c
           );
-          localStorage.setItem("savedCards", JSON.stringify(ownerCards));
+          localStorage.setItem('savedCards', JSON.stringify(ownerCards));
           setMovies(ownerCards);
         })
         .catch((err) => {
@@ -57,7 +57,7 @@ function App() {
       .then((data) => {
         if (data) {
           setLoggedIn(true);
-          navigate("/movies");
+          navigate('/movies');
         }
       })
       .catch((err) => {
@@ -77,6 +77,11 @@ function App() {
       });
   }
 
+  function signOut() {
+    mainAuth.logout();
+    setLoggedIn(false);
+    navigate('/');
+  }
 
   return (
     <div className='App'>
@@ -87,25 +92,55 @@ function App() {
           </Route>
 
           <Route path='/movies' element={<Layout />}>
-            <Route index element={<ProtectedRoute loggedIn={loggedIn} isSaved={isSaved} isLoading={isLoading} movies={movies} >
-              <Movies {...{ isSaved, isLoading, movies }} />
-            </ProtectedRoute>} />
+            <Route
+              index
+              element={
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  isSaved={isSaved}
+                  isLoading={isLoading}
+                  movies={movies}
+                >
+                  <Movies {...{ isSaved, isLoading, movies }} />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path='/saved-movies' element={<Layout />}>
-            <Route index element={<ProtectedRoute loggedIn={loggedIn} isSaved={isSaved} isLoading={isLoading} >
-              <SavedMovies {...{ isLoading }} />
-            </ProtectedRoute>} />
+            <Route
+              index
+              element={
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  isSaved={isSaved}
+                  isLoading={isLoading}
+                >
+                  <SavedMovies {...{ isLoading }} />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path='/profile' element={<LayoutProfile />}>
-            <Route index element={<ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>} />
+            <Route
+              index
+              element={
+                <ProtectedRoute loggedIn={loggedIn}>
+                  <Profile {...{ currentUser, signOut }} />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
-          <Route path='/signup' element={<Register {...{ handleSubmitRegister }} />} />
-          <Route path='/signin' element={<Login {...{ handleSubmitLogin }} />} />
+          <Route
+            path='/signup'
+            element={<Register {...{ handleSubmitRegister }} />}
+          />
+          <Route
+            path='/signin'
+            element={<Login {...{ handleSubmitLogin }} />}
+          />
 
           <Route path='*' element={<NotFound />} />
         </Routes>
