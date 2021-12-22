@@ -1,4 +1,4 @@
-import { apiConfig } from './constants';
+import { API_CONFIG } from './constants';
 
 class MainApi {
   constructor({ adress, headers }) {
@@ -16,6 +16,7 @@ class MainApi {
 
   getUserInfo() {
     return fetch(`${this._adress}/users/me`, {
+      method: 'GET',
       headers: this._headers,
       credentials: 'include',
     }).then((res) => this._checkServerAnswer(res));
@@ -33,47 +34,41 @@ class MainApi {
     }).then((res) => this._checkServerAnswer(res));
   }
 
-  getInitialCards() {
-    return fetch(`${this._adress}/cards`, {
+  getSavedMovies() {
+    return fetch(`${this._adress}/movies`, {
       headers: this._headers,
       credentials: 'include',
     }).then((res) => this._checkServerAnswer(res));
   }
 
-  putLike(cardId) {
-    return fetch(`${this._adress}/cards/${cardId}/likes`, {
-      method: 'PUT',
+  saveMovie({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, id }) {
+    return fetch(`${this._adress}/movies`, {
+      method: 'POST',
       headers: this._headers,
-      credentials: 'include',
-    }).then((res) => this._checkServerAnswer(res));
-  }
-
-  deleteLike(cardId) {
-    return fetch(`${this._adress}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers,
-      credentials: 'include',
-    }).then((res) => this._checkServerAnswer(res));
-  }
-
-  deleteCard(cardId) {
-    return fetch(`${this._adress}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers,
-      credentials: 'include',
-    }).then((res) => this._checkServerAnswer(res));
-  }
-
-  editAvatar({ avatar }) {
-    return fetch(`${this._adress}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      credentials: 'include',
       body: JSON.stringify({
-        avatar: avatar,
+        "country": country,
+        "director": director,
+        "duration": duration,
+        "year": year,
+        "description": description,
+        "image": `https://api.nomoreparties.co${image.url}`,
+        "trailer": trailerLink,
+        "nameRU": nameRU,
+        "nameEN": nameEN,
+        "thumbnail": `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
+        "movieId": id,
       }),
+      credentials: 'include',
+    }).then((res) => this._checkServerAnswer(res));
+  }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._adress}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      credentials: 'include',
     }).then((res) => this._checkServerAnswer(res));
   }
 }
 
-export const mainApi = new MainApi(apiConfig);
+export const mainApi = new MainApi(API_CONFIG);

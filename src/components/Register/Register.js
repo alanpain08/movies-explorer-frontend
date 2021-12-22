@@ -1,7 +1,28 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import headerLogo from '../../images/headerLogo.svg';
 
-function Register() {
+function Register({ handleSubmitRegister }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleSubmitRegister(name, email, password);
+  }
   return (
     <section className='register'>
       <div className='register__container'>
@@ -15,12 +36,13 @@ function Register() {
           </Link>
           <h1 className='register__header-title'>Добро пожаловать!</h1>
         </div>
-        <form className='register__form'>
+        <form className='register__form' onSubmit={handleSubmit}>
           <div className='register__form-li'>
             <p className='register__form-input-label'>Имя</p>
             <input
+              onChange={handleChangeName}
+              value={name}
               type='text'
-              defaultValue='Виталий'
               className='register__form-input'
               required
             />
@@ -29,8 +51,9 @@ function Register() {
           <div className='register__form-li'>
             <p className='register__form-input-label'>E-mail</p>
             <input
+              onChange={handleChangeEmail}
+              value={email}
               type='email'
-              defaultValue='pochta@yandex.ru'
               className='register__form-input'
               required
             />
@@ -38,7 +61,12 @@ function Register() {
           </div>
           <div className='register__form-li'>
             <p className='register__form-input-label'>Пароль</p>
-            <input type='password' className='register__form-input' required />
+            <input
+              onChange={handleChangePassword}
+              value={password}
+              type='password'
+              className='register__form-input'
+              required />
             <span className='register__form-input-error'></span>
           </div>
           <button type='submit' className='register__form-button'>
