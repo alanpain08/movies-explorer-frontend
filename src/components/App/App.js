@@ -25,14 +25,15 @@ function App() {
 
   const navigate = useNavigate();
 
-  /* useEffect(() => {
-     mainAuth.getContent().then((data) => {
-       if (data) {
-         setLoggedIn(true);
-         navigate.push("/movies");
-       }
-     });
-   }, [navigate]); */
+  useEffect(() => {
+    mainAuth.getContent().then((data) => {
+      if (data) {
+        setLoggedIn(true);
+        setCurrentUser(data);
+        navigate('/movies');
+      }
+    });
+  }, [navigate]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -50,6 +51,14 @@ function App() {
         });
     }
   }, [loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/movies');
+    }
+  }, [navigate, loggedIn]);
+
+
 
   function handleSubmitLogin(email, password) {
     mainAuth
