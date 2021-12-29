@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
 import Layout from '../Layout/Layout';
@@ -24,13 +24,20 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (loggedIn && (location.pathname === '/' || location.pathname === '/signin' || location.pathname === '/signup')) {
+      navigate('/movies');
+    }
+  }, [navigate, loggedIn, location]);
 
   useEffect(() => {
     mainAuth.getContent().then((data) => {
       if (data) {
         setLoggedIn(true);
         setCurrentUser(data);
-        navigate('/movies');
+        //navigate('/movies');
       }
     });
   }, [navigate]);
@@ -51,13 +58,6 @@ function App() {
         });
     }
   }, [loggedIn]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      navigate('/movies');
-    }
-  }, [navigate, loggedIn]);
-
 
 
   function handleSubmitLogin(email, password) {
