@@ -29,6 +29,13 @@
   width: 91%;
 }
 
+.search__form-error {
+  font-size: 10px;
+  line-height: 1.21;
+  color: #ff4062;
+  margin: 10px 0 0;
+}
+
 .search__form-button {
   width: 34px;
   height: 34px;

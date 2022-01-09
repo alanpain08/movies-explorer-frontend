@@ -20,14 +20,22 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
-  const [isSaved, setIsSaved] = useState(true);
+  const [allMovies, setAllMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [errorInfo, setErrorInfo] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (loggedIn && (location.pathname === '/' || location.pathname === '/signin' || location.pathname === '/signup')) {
+    if (
+      loggedIn &&
+      (location.pathname === '/' ||
+        location.pathname === '/signin' ||
+        location.pathname === '/signup')
+    ) {
       navigate('/movies');
     }
   }, [navigate, loggedIn, location]);
@@ -42,48 +50,187 @@ function App() {
     });
   }, [navigate]);
 
+  /*useEffect(() => {
+    moviesApi.getMoviesContent().then((data) => {
+      setMovies(data)
+    })
+  }, [setAllMovies])*/
+
+  useEffect(() => {
+    const searchedMovies = localStorage.getItem('searchedMovies');
+    if (searchedMovies) {
+      setMovies(JSON.parse(searchedMovies));
+    }
+  }, []);
+
   useEffect(() => {
     if (loggedIn) {
       Promise.all([mainApi.getSavedMovies(), mainApi.getUserInfo()])
         .then(([userMovies, userInfo]) => {
           setCurrentUser(userInfo);
-          const ownerCards = userMovies.filter(
-            (c) => c.owner === userInfo._id && c
-          );
-          localStorage.setItem('savedCards', JSON.stringify(ownerCards));
-          setMovies(ownerCards);
+          const movieOwner = userMovies.filter((m) => m.owner === userInfo._id && m);
+          localStorage.setItem('savedMovies', JSON.stringify(movieOwner));
+          setSavedMovies(movieOwner);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, setSavedMovies]);
 
+  function handleNotFound(data) {
+    data.length === 0 ? setNotFound(true) : setNotFound(false);
+  }
 
-  function handleSubmitLogin(email, password) {
+  function searchByName(data, query) {
+    return data.filter((c) => {
+      if (c.nameRU.toLowerCase().includes(query.toLowerCase())) {
+        return c;
+      }
+      if (
+        c.nameEN !== null &&
+        c.nameEN.toLowerCase().includes(query.toLowerCase())
+      ) {
+        return c;
+      }
+      return false;
+    });
+  }
+
+  function searchMovie(query) {
+    if (query) {
+      if (allMovies.length === 0) {
+        setIsLoading(true);
+        moviesApi
+          .getMoviesContent()
+          .then((res) => {
+            localStorage.setItem('allMovies', JSON.stringify(res));
+            const allMovies = JSON.parse(localStorage.getItem('allMovies'));
+            setAllMovies(allMovies);
+
+            const searchedMovies = searchByName(res, query);
+            handleNotFound(searchedMovies);
+            localStorage.setItem(
+              'searchedMovies',
+              JSON.stringify(searchedMovies)
+            );
+            setMovies(searchedMovies);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => setIsLoading(false));
+      }
+      if (allMovies.length !== 0) {
+        const searchedMovies = searchByName(allMovies, query);
+        handleNotFound(searchedMovies);
+        localStorage.setItem('searchedMovies', JSON.stringify(searchedMovies));
+        setMovies(searchedMovies);
+      }
+    }
+  }
+
+  function searchSavedMovies(query) {
+    if (query) {
+      const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+      const searchedMovie = searchByName(savedMovies, query);
+      handleNotFound(searchedMovie);
+      setSavedMovies(searchedMovie);
+    }
+  }
+
+  function handleMovieSave(movie) {
+    mainApi
+      .saveMovie(movie)
+      .then((savedNewMovie) => {
+        setSavedMovies([...savedMovies, savedNewMovie]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getSavedMoviesC(currentUser) {
+    mainApi
+      .getSavedMovies()
+      .then((res) => {
+        const ownerCards = res.filter((c) => c.owner === currentUser._id && c);
+        localStorage.setItem("savedCards", JSON.stringify(ownerCards));
+        setSavedMovies(ownerCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  function handleMovieDelete(movie) {
+    let deletedCard = movie;
+    if (movie._id) {
+      deletedCard = movie;
+    }
+    if (!movie._id) {
+      deletedCard = savedMovies.find((c) => c.movieId === movie.id);
+    }
+    mainApi
+      .deleteMovie(deletedCard._id)
+      .then((res) => {
+        getSavedMoviesC(currentUser);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleUpdateUserInfo({name, email}) {
+    setIsLoading(true);
+    mainApi
+    .editUserInfo({name, email})
+    .then((res) => {
+      setCurrentUser(res)
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      setIsLoading(false)
+    })
+  }
+
+  function handleSubmitLogin({email, password}) {
+    setIsLoading(true);
     mainAuth
-      .authorize(email, password)
+      .authorize({email, password})
       .then((data) => {
         if (data) {
           setLoggedIn(true);
+          setErrorInfo(false);
           navigate('/movies');
         }
       })
       .catch((err) => {
         setLoggedIn(false);
+        setErrorInfo(true);
         console.log(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
-  function handleSubmitRegister(name, email, password) {
+  function handleSubmitRegister({name, email, password}) {
+    setIsLoading(true);
     mainAuth
-      .register(name, email, password)
+      .register({name, email, password})
       .then((res) => {
-        handleSubmitLogin(email, password);
+        handleSubmitLogin({email, password});
       })
       .catch((err) => {
+        setErrorInfo(true);
         console.log(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   function signOut() {
@@ -104,13 +251,19 @@ function App() {
             <Route
               index
               element={
-                <ProtectedRoute
-                  loggedIn={loggedIn}
-                  isSaved={isSaved}
-                  isLoading={isLoading}
-                  movies={movies}
-                >
-                  <Movies {...{ isSaved, isLoading, movies }} />
+                <ProtectedRoute {...{ loggedIn }}>
+                  <Movies
+                    {...{
+                      isLoading,
+                      movies,
+                      savedMovies,
+                      searchMovie,
+                      notFound,
+                      setNotFound,
+                      handleMovieSave,
+                      handleMovieDelete
+                    }}
+                  />
                 </ProtectedRoute>
               }
             />
@@ -120,12 +273,17 @@ function App() {
             <Route
               index
               element={
-                <ProtectedRoute
-                  loggedIn={loggedIn}
-                  isSaved={isSaved}
-                  isLoading={isLoading}
-                >
-                  <SavedMovies {...{ isLoading }} />
+                <ProtectedRoute {...{ loggedIn }}>
+                  <SavedMovies
+                    {...{
+                      isLoading,
+                      savedMovies,
+                      searchSavedMovies,
+                      notFound,
+                      setNotFound,
+                      handleMovieDelete,
+                    }}
+                  />
                 </ProtectedRoute>
               }
             />
@@ -135,8 +293,8 @@ function App() {
             <Route
               index
               element={
-                <ProtectedRoute loggedIn={loggedIn}>
-                  <Profile {...{ currentUser, signOut }} />
+                <ProtectedRoute {...{ loggedIn }}>
+                  <Profile {...{ currentUser, signOut, handleUpdateUserInfo, isLoading }} />
                 </ProtectedRoute>
               }
             />
@@ -144,11 +302,11 @@ function App() {
 
           <Route
             path='/signup'
-            element={<Register {...{ handleSubmitRegister }} />}
+            element={<Register {...{ handleSubmitRegister, isLoading, errorInfo }} />}
           />
           <Route
             path='/signin'
-            element={<Login {...{ handleSubmitLogin }} />}
+            element={<Login {...{ handleSubmitLogin, isLoading, errorInfo }} />}
           />
 
           <Route path='*' element={<NotFound />} />

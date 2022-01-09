@@ -1,4 +1,4 @@
-import { BASE_MOVIE_URL } from "./constants";
+import { BASE_MOVIE_URL } from './constants';
 
 const checkServerAnswer = (res) => {
   if (res.ok) {

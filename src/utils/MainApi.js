@@ -41,29 +41,40 @@ class MainApi {
     }).then((res) => this._checkServerAnswer(res));
   }
 
-  saveMovie({ country, director, duration, year, description, image, trailerLink, nameRU, nameEN, id }) {
+  saveMovie({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    id,
+  }) {
     return fetch(`${this._adress}/movies`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        "country": country,
-        "director": director,
-        "duration": duration,
-        "year": year,
-        "description": description,
-        "image": `https://api.nomoreparties.co${image.url}`,
-        "trailer": trailerLink,
-        "nameRU": nameRU,
-        "nameEN": nameEN,
-        "thumbnail": `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
-        "movieId": id,
+        country: country,
+        director: director,
+        duration: duration,
+        year: year,
+        description: description,
+        image: `https://api.nomoreparties.co${image.url}`,
+        trailer: trailerLink,
+        nameRU: nameRU,
+        nameEN: nameEN,
+        thumbnail: `https://api.nomoreparties.co${image.formats.thumbnail.url}`,
+        movieId: id,
       }),
       credentials: 'include',
     }).then((res) => this._checkServerAnswer(res));
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this._adress}/movies/${movieId}`, {
+  deleteMovie(movieID) {
+    return fetch(`${this._adress}/movies/${movieID}`, {
       method: 'DELETE',
       headers: this._headers,
       credentials: 'include',

@@ -1,23 +1,28 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import headerLogo from '../../images/headerLogo.svg';
+import Preloader from '../Preloader/Preloader';
+import useFormWithValidation from '../../utils/formValidation';
+import { useEffect, useState } from 'react';
 
-function Login({ handleSubmitLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login({ handleSubmitLogin, isLoading, errorInfo }) {
+  const [errorMessage, setErrorMessage] = useState('');
+  const { values, handleChange, errors, isValid } = useFormWithValidation({
+    email: '',
+    password: '',
+  });
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  const isDisabled = values.email === '' || values.password === '' || !isValid;
 
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+  useEffect(() => {
+    if (errorInfo) {
+      setErrorMessage('Что-то пошло не так');
+    }
+  }, [errorInfo]);
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    handleSubmitLogin(email, password);
-  }
+    !isDisabled && handleSubmitLogin(values);
+  };
 
   return (
     <section className='login'>
@@ -33,31 +38,47 @@ function Login({ handleSubmitLogin }) {
           <h1 className='login__header-title'>Рады видеть!</h1>
         </div>
         <form className='login__form' onSubmit={handleSubmit}>
-          <div className='login__form-li'>
-            <p className='login__form-input-label'>E-mail</p>
-            <input
-              type='email'
-              onChange={handleChangeEmail}
-              value={email}
-              className='login__form-input'
-              required
-            />
-            <span className='login__form-input-error'></span>
-          </div>
-          <div className='login__form-li'>
-            <p className='login__form-input-label'>Пароль</p>
-            <input
-              type='password'
-              className='login__form-input'
-              required
-              onChange={handleChangePassword}
-              value={password}
-            />
-            <span className='login__form-input-error'></span>
-          </div>
-          <button type='submit' className='login__form-button'>
-            Войти
-          </button>
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <>
+              <div className='login__form-li'>
+                <p className='login__form-input-label'>E-mail</p>
+                <input
+                  type='email'
+                  name='email'
+                  onChange={handleChange}
+                  value={values.email}
+                  className='login__form-input'
+                  required
+                />
+              </div>
+              <span className='login__form-error'>{errors.email}</span>
+              <div className='login__form-li'>
+                <p className='login__form-input-label'>Пароль</p>
+                <input
+                  type='password'
+                  name='password'
+                  className='login__form-input'
+                  required
+                  onChange={handleChange}
+                  value={values.password}
+                />
+              </div>
+              <span className='login__form-error'>{errors.password}</span>
+              <span className='login__form-error'>{errorMessage}</span>
+              <button
+                type='submit'
+                className={`login__form-button ${
+                  isDisabled && 'login__form-button_disabled'
+                }`}
+                disabled={isDisabled}
+                onClick={handleSubmit}
+              >
+                Войти
+              </button>
+            </>
+          )}
         </form>
         <div className='login__link-container'>
           <p className='login__link-container-text'>Ещё не зарегистрированы?</p>
