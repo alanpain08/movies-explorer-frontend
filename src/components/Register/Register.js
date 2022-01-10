@@ -4,7 +4,7 @@ import Preloader from '../Preloader/Preloader';
 import useFormWithValidation from '../../utils/formValidation';
 import { useEffect, useState } from 'react';
 
-function Register({ handleSubmitRegister, isLoading, errorInfo }) {
+function Register({ handleSubmitRegister, isLoading, errorInfo, setErrorInfo }) {
   const [errorMessage, setErrorMessage] = useState('');
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     name: '',
@@ -21,8 +21,14 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
   useEffect(() => {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
+    } else {
+      setErrorMessage('')
     }
   }, [errorInfo]);
+
+  function hideErrorMessage() {
+    setErrorInfo(false)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +47,7 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
           </Link>
           <h1 className='register__header-title'>Добро пожаловать!</h1>
         </div>
-        <form className='register__form' onSubmit={handleSubmit}>
+        <form className='register__form' onSubmit={handleSubmit} onSelect={hideErrorMessage}>
           {isLoading ? (
             <Preloader />
           ) : (
@@ -85,9 +91,8 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
               <span className='register__form-error'>{errorMessage}</span>
               <button
                 type='submit'
-                className={`register__form-button ${
-                  isDisabled && 'register__form-button_disabled'
-                }`}
+                className={`register__form-button ${isDisabled && 'register__form-button_disabled'
+                  }`}
                 disabled={isDisabled}
                 onClick={handleSubmit}
               >

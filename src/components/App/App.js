@@ -48,7 +48,7 @@ function App() {
         //navigate('/movies');
       }
     });
-  }, [navigate]);
+  }, []);
 
   /*useEffect(() => {
     moviesApi.getMoviesContent().then((data) => {
@@ -76,7 +76,7 @@ function App() {
           console.log(err);
         });
     }
-  }, [loggedIn, setSavedMovies]);
+  }, [loggedIn]);
 
   function handleNotFound(data) {
     data.length === 0 ? setNotFound(true) : setNotFound(false);
@@ -150,13 +150,13 @@ function App() {
       });
   }
 
-  function getSavedMoviesC(currentUser) {
+  function checkSavedMovies(user) {
     mainApi
       .getSavedMovies()
       .then((res) => {
-        const ownerCards = res.filter((c) => c.owner === currentUser._id && c);
-        localStorage.setItem("savedCards", JSON.stringify(ownerCards));
-        setSavedMovies(ownerCards);
+        const movieOwner = res.filter((m) => m.owner === user._id && m);
+        localStorage.setItem('savedMovies', JSON.stringify(movieOwner));
+        setSavedMovies(movieOwner);
       })
       .catch((err) => {
         console.log(err);
@@ -174,32 +174,32 @@ function App() {
     mainApi
       .deleteMovie(deletedCard._id)
       .then((res) => {
-        getSavedMoviesC(currentUser);
+        checkSavedMovies(currentUser);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function handleUpdateUserInfo({name, email}) {
+  function handleUpdateUserInfo({ name, email }) {
     setIsLoading(true);
     mainApi
-    .editUserInfo({name, email})
-    .then((res) => {
-      setCurrentUser(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      setIsLoading(false)
-    })
+      .editUserInfo({ name, email })
+      .then((res) => {
+        setCurrentUser(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
-  function handleSubmitLogin({email, password}) {
+  function handleSubmitLogin({ email, password }) {
     setIsLoading(true);
     mainAuth
-      .authorize({email, password})
+      .authorize({ email, password })
       .then((data) => {
         if (data) {
           setLoggedIn(true);
@@ -217,12 +217,12 @@ function App() {
       })
   }
 
-  function handleSubmitRegister({name, email, password}) {
+  function handleSubmitRegister({ name, email, password }) {
     setIsLoading(true);
     mainAuth
-      .register({name, email, password})
+      .register({ name, email, password })
       .then((res) => {
-        handleSubmitLogin({email, password});
+        handleSubmitLogin({ email, password });
       })
       .catch((err) => {
         setErrorInfo(true);
@@ -236,6 +236,9 @@ function App() {
   function signOut() {
     mainAuth.logout();
     setLoggedIn(false);
+    localStorage.removeItem('searchedMovies');
+    localStorage.removeItem('allMovies');
+    setAllMovies([]);
     navigate('/');
   }
 
@@ -302,11 +305,11 @@ function App() {
 
           <Route
             path='/signup'
-            element={<Register {...{ handleSubmitRegister, isLoading, errorInfo }} />}
+            element={<Register {...{ handleSubmitRegister, isLoading, errorInfo, setErrorInfo }} />}
           />
           <Route
             path='/signin'
-            element={<Login {...{ handleSubmitLogin, isLoading, errorInfo }} />}
+            element={<Login {...{ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }} />}
           />
 
           <Route path='*' element={<NotFound />} />
