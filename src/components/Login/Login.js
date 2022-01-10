@@ -17,12 +17,12 @@ function Login({ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }) {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
     } else {
-      setErrorMessage('')
+      setErrorMessage('');
     }
   }, [errorInfo]);
 
   function hideErrorMessage() {
-    setErrorInfo(false)
+    setErrorInfo(false);
   }
 
   const handleSubmit = (e) => {
@@ -43,7 +43,11 @@ function Login({ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }) {
           </Link>
           <h1 className='login__header-title'>Рады видеть!</h1>
         </div>
-        <form className='login__form' onSubmit={handleSubmit} onSelect={hideErrorMessage}>
+        <form
+          className='login__form'
+          onSubmit={handleSubmit}
+          onSelect={hideErrorMessage}
+        >
           {isLoading ? (
             <Preloader />
           ) : (
@@ -75,8 +79,9 @@ function Login({ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }) {
               <span className='login__form-error'>{errorMessage}</span>
               <button
                 type='submit'
-                className={`login__form-button ${isDisabled && 'login__form-button_disabled'
-                  }`}
+                className={`login__form-button ${
+                  isDisabled && 'login__form-button_disabled'
+                }`}
                 disabled={isDisabled}
                 onClick={handleSubmit}
               >

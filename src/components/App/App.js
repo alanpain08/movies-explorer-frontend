@@ -68,7 +68,9 @@ function App() {
       Promise.all([mainApi.getSavedMovies(), mainApi.getUserInfo()])
         .then(([userMovies, userInfo]) => {
           setCurrentUser(userInfo);
-          const movieOwner = userMovies.filter((m) => m.owner === userInfo._id && m);
+          const movieOwner = userMovies.filter(
+            (m) => m.owner === userInfo._id && m
+          );
           localStorage.setItem('savedMovies', JSON.stringify(movieOwner));
           setSavedMovies(movieOwner);
         })
@@ -161,7 +163,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   function handleMovieDelete(movie) {
     let deletedCard = movie;
@@ -186,14 +188,14 @@ function App() {
     mainApi
       .editUserInfo({ name, email })
       .then((res) => {
-        setCurrentUser(res)
+        setCurrentUser(res);
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
   }
 
   function handleSubmitLogin({ email, password }) {
@@ -213,8 +215,8 @@ function App() {
         console.log(err);
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
   }
 
   function handleSubmitRegister({ name, email, password }) {
@@ -229,8 +231,8 @@ function App() {
         console.log(err);
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
   }
 
   function signOut() {
@@ -264,7 +266,7 @@ function App() {
                       notFound,
                       setNotFound,
                       handleMovieSave,
-                      handleMovieDelete
+                      handleMovieDelete,
                     }}
                   />
                 </ProtectedRoute>
@@ -297,7 +299,14 @@ function App() {
               index
               element={
                 <ProtectedRoute {...{ loggedIn }}>
-                  <Profile {...{ currentUser, signOut, handleUpdateUserInfo, isLoading }} />
+                  <Profile
+                    {...{
+                      currentUser,
+                      signOut,
+                      handleUpdateUserInfo,
+                      isLoading,
+                    }}
+                  />
                 </ProtectedRoute>
               }
             />
@@ -305,11 +314,24 @@ function App() {
 
           <Route
             path='/signup'
-            element={<Register {...{ handleSubmitRegister, isLoading, errorInfo, setErrorInfo }} />}
+            element={
+              <Register
+                {...{
+                  handleSubmitRegister,
+                  isLoading,
+                  errorInfo,
+                  setErrorInfo,
+                }}
+              />
+            }
           />
           <Route
             path='/signin'
-            element={<Login {...{ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }} />}
+            element={
+              <Login
+                {...{ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }}
+              />
+            }
           />
 
           <Route path='*' element={<NotFound />} />

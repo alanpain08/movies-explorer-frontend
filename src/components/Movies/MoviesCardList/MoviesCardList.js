@@ -3,7 +3,14 @@ import MoreButton from '../MoreButton/MoreButton';
 import Preloader from '../../Preloader/Preloader';
 import { useState, useEffect } from 'react';
 
-function MoviesCardList({ isLoading, renderMovies, savedMovies, notFound, handleMovieSave, handleMovieDelete }) {
+function MoviesCardList({
+  isLoading,
+  renderMovies,
+  savedMovies,
+  notFound,
+  handleMovieSave,
+  handleMovieDelete,
+}) {
   const [moviesQuantity, setMoviesQuantity] = useState(12);
   const [moviesAddQuantity, setMoviesAddQuantity] = useState(3);
 
@@ -31,10 +38,8 @@ function MoviesCardList({ isLoading, renderMovies, savedMovies, notFound, handle
 
     window.addEventListener('resize', checkResize);
 
-    return () => window.removeEventListener("resize", checkResize);
-    
+    return () => window.removeEventListener('resize', checkResize);
   }, []);
-
 
   function handleAddMovie() {
     setMoviesQuantity(moviesQuantity + moviesAddQuantity);
@@ -42,7 +47,9 @@ function MoviesCardList({ isLoading, renderMovies, savedMovies, notFound, handle
 
   return (
     <section className='movies-cards'>
-      {(notFound && renderMovies.length === 0) && <h2 className='movies-cards__not-found'>Ничего не найдено</h2>}
+      {notFound && renderMovies.length === 0 && (
+        <h2 className='movies-cards__not-found'>Ничего не найдено</h2>
+      )}
       {isLoading ? (
         <Preloader />
       ) : (
@@ -62,7 +69,9 @@ function MoviesCardList({ isLoading, renderMovies, savedMovies, notFound, handle
               ))}
         </ul>
       )}
-      {(renderMovies && moviesQuantity < renderMovies.length) && <MoreButton {...{handleAddMovie}} />}
+      {renderMovies && moviesQuantity < renderMovies.length && (
+        <MoreButton {...{ handleAddMovie }} />
+      )}
     </section>
   );
 }
