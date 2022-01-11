@@ -52,7 +52,6 @@ function App() {
         localStorage.removeItem('searchedMovies');
         localStorage.removeItem('allMovies');
         setLoggedIn(false);
-        navigate('/')
       })
   }, [navigate]);
 
