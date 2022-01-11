@@ -53,7 +53,7 @@ function App() {
         localStorage.removeItem('allMovies');
         setLoggedIn(false);
       })
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     const searchedMovies = localStorage.getItem('searchedMovies');
