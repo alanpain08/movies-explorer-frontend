@@ -41,20 +41,19 @@ function App() {
   }, [navigate, loggedIn, location]);
 
   useEffect(() => {
-    mainAuth.getContent().then((data) => {
-      if (data) {
-        setLoggedIn(true);
-        setCurrentUser(data);
-        //navigate('/movies');
-      }
-    });
+    mainAuth.getContent()
+      .then((data) => {
+        if (data) {
+          setLoggedIn(true);
+          setCurrentUser(data);
+        }
+      })
+      .catch(() => {
+        setLoggedIn(false);
+        localStorage.removeItem('searchedMovies');
+        localStorage.removeItem('allMovies');
+      })
   }, []);
-
-  /*useEffect(() => {
-    moviesApi.getMoviesContent().then((data) => {
-      setMovies(data)
-    })
-  }, [setAllMovies])*/
 
   useEffect(() => {
     const searchedMovies = localStorage.getItem('searchedMovies');
@@ -86,7 +85,10 @@ function App() {
 
   function searchByName(data, query) {
     return data.filter((c) => {
-      if (c.nameRU.toLowerCase().includes(query.toLowerCase())) {
+      if (
+        c.nameRU !== null &&
+        c.nameRU.toLowerCase().includes(query.toLowerCase())
+      ) {
         return c;
       }
       if (
@@ -166,15 +168,10 @@ function App() {
   }
 
   function handleMovieDelete(movie) {
-    let deletedCard = movie;
-    if (movie._id) {
-      deletedCard = movie;
-    }
-    if (!movie._id) {
-      deletedCard = savedMovies.find((c) => c.movieId === movie.id);
-    }
+    let deletedMovie = movie;
+    deletedMovie = movie._id ? movie : savedMovies.find((m) => m.movieId === movie.id)
     mainApi
-      .deleteMovie(deletedCard._id)
+      .deleteMovie(deletedMovie._id)
       .then((res) => {
         checkSavedMovies(currentUser);
       })
@@ -237,10 +234,11 @@ function App() {
 
   function signOut() {
     mainAuth.logout();
-    setLoggedIn(false);
     localStorage.removeItem('searchedMovies');
     localStorage.removeItem('allMovies');
     setAllMovies([]);
+    setMovies([]);
+    setLoggedIn(false);
     navigate('/');
   }
 
