@@ -49,11 +49,12 @@ function App() {
         }
       })
       .catch(() => {
-        setLoggedIn(false);
         localStorage.removeItem('searchedMovies');
         localStorage.removeItem('allMovies');
+        setLoggedIn(false);
+        navigate('/')
       })
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const searchedMovies = localStorage.getItem('searchedMovies');
@@ -84,20 +85,13 @@ function App() {
   }
 
   function searchByName(data, query) {
-    return data.filter((c) => {
-      if (
-        c.nameRU !== null &&
-        c.nameRU.toLowerCase().includes(query.toLowerCase())
-      ) {
-        return c;
+    return data.filter((m) => {
+      const name = [m.nameRU, m.nameEN];
+      if (name.toString().toLowerCase().includes(query.toLowerCase())) {
+        return m
+      } else {
+        return false
       }
-      if (
-        c.nameEN !== null &&
-        c.nameEN.toLowerCase().includes(query.toLowerCase())
-      ) {
-        return c;
-      }
-      return false;
     });
   }
 
