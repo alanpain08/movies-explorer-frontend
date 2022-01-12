@@ -1,9 +1,10 @@
 import headerLogo from '../../images/headerLogo.svg';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 
 function Header({ loggedIn }) {
+  let location = useLocation();
 
   const isMobileDevice = useMediaQuery({
     query: "(min-width: 320px)",
@@ -15,7 +16,7 @@ function Header({ loggedIn }) {
 
   return (
     <header
-      className={`${loggedIn ? 'header' : 'header header__logged'
+      className={`${(location.pathname === '/' && !loggedIn) ? 'header' : 'header header__logged'
         }`}
     >
       <Link to='/'>
@@ -23,12 +24,12 @@ function Header({ loggedIn }) {
       </Link>
 
       <div
-        className={`${!loggedIn
+        className={`${(location.pathname === '/' && !loggedIn)
           ? 'header__nav'
           : 'header__nav header__nav-logged'
           }`}
       >
-        {!loggedIn ? (
+        {(location.pathname === '/' && !loggedIn) ? (
           <>
             <Link to='/signup' className='header__link-main'>
               Регистрация
