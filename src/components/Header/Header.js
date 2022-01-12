@@ -29,7 +29,7 @@ function Header({ loggedIn }) {
           : 'header__nav header__nav-logged'
           }`}
       >
-        {(location.pathname === '/' && !loggedIn) ? (
+        {!loggedIn ? (
           <>
             <Link to='/signup' className='header__link-main'>
               Регистрация
