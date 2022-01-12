@@ -265,7 +265,7 @@ function App() {
             />
           </Route>
 
-          <Route path='/saved-movies' element={<Layout />}>
+          <Route path='/saved-movies' element={<Layout {...{ loggedIn }} />}>
             <Route
               index
               element={
@@ -285,7 +285,7 @@ function App() {
             />
           </Route>
 
-          <Route path='/profile' element={<LayoutProfile />}>
+          <Route path='/profile' element={<LayoutProfile {...{ loggedIn }} />}>
             <Route
               index
               element={
