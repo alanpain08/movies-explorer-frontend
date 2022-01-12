@@ -239,11 +239,11 @@ function App() {
     <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path='/' element={<Layout {...{ loggedIn }} />}>
             <Route index element={<Main />} />
           </Route>
 
-          <Route path='/movies' element={<Layout />}>
+          <Route path='/movies' element={<Layout {...{ loggedIn }} />}>
             <Route
               index
               element={
