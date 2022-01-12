@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     if (
       loggedIn &&
-      (location.pathname === '/' ||
+      (
         location.pathname === '/signin' ||
         location.pathname === '/signup')
     ) {

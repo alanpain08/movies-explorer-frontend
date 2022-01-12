@@ -29,6 +29,7 @@ function SearchForm({ onSearch, setIsFiltered }) {
             required
             onChange={handleChangeSearch}
             onKeyPress={hideError}
+            value={search}
           ></input>
           <button className='search__form-button'></button>
         </div>
