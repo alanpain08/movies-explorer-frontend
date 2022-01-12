@@ -38,7 +38,7 @@ function App() {
     ) {
       navigate('/movies');
     }
-  }, [navigate, loggedIn, location]);
+  }, [loggedIn]);
 
   useEffect(() => {
     mainAuth.getContent()
