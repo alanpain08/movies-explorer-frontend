@@ -13,23 +13,23 @@ function Login({ handleSubmitLogin, isLoading, errorInfo }) {
   });
 
   useEffect(() => {
-    (values.name === '' ||
-      values.email === '' ||
-      values.password === '' ||
-      !isValid) ? setIsDisabled(true) :
-      setIsDisabled(false);
-  }, [setIsDisabled, values.name, values.email, values.password, isValid])
+    values.email === '' ||
+    values.password === '' ||
+    !isValid
+      ? setIsDisabled(true)
+      : setIsDisabled(false);
+  }, [setIsDisabled, values.email, values.password, isValid]);
 
   useEffect(() => {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
     } else {
-      setErrorMessage('')
+      setErrorMessage('');
     }
   }, [errorInfo]);
 
   function hideErrorMessage() {
-    setErrorMessage('')
+    setErrorMessage('');
   }
 
   const handleSubmit = (e) => {
@@ -86,8 +86,9 @@ function Login({ handleSubmitLogin, isLoading, errorInfo }) {
               <span className='login__form-error'>{errorMessage}</span>
               <button
                 type='submit'
-                className={`login__form-button ${isDisabled && 'login__form-button_disabled'
-                  }`}
+                className={`login__form-button ${
+                  isDisabled && 'login__form-button_disabled'
+                }`}
                 disabled={isDisabled}
                 onClick={handleSubmit}
               >

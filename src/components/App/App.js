@@ -243,11 +243,11 @@ function App() {
             <Route index element={<Main />} />
           </Route>
 
-          <Route path='/movies' element={<Layout {...{ loggedIn }} />}>
+          <Route path='movies' element={<Layout {...{ loggedIn }} />}>
             <Route
               index
               element={
-                <ProtectedRoute {...{ loggedIn }}>
+                <ProtectedRoute loggedIn={ loggedIn }>
                   <Movies
                     {...{
                       isLoading,

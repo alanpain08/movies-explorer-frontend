@@ -14,23 +14,24 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
   });
 
   useEffect(() => {
-    (values.name === '' ||
-      values.email === '' ||
-      values.password === '' ||
-      !isValid) ? setIsDisabled(true) :
-      setIsDisabled(false);
-  }, [setIsDisabled, values.name, values.email, values.password, isValid])
+    values.name === '' ||
+    values.email === '' ||
+    values.password === '' ||
+    !isValid
+      ? setIsDisabled(true)
+      : setIsDisabled(false);
+  }, [setIsDisabled, values.name, values.email, values.password, isValid]);
 
   useEffect(() => {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
     } else {
-      setErrorMessage('')
+      setErrorMessage('');
     }
   }, [errorInfo]);
 
   function hideErrorMessage() {
-    setErrorMessage('')
+    setErrorMessage('');
   }
 
   const handleSubmit = (e) => {
@@ -50,7 +51,11 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
           </Link>
           <h1 className='register__header-title'>Добро пожаловать!</h1>
         </div>
-        <form className='register__form' onSubmit={handleSubmit} onSelect={hideErrorMessage}>
+        <form
+          className='register__form'
+          onSubmit={handleSubmit}
+          onSelect={hideErrorMessage}
+        >
           {isLoading ? (
             <Preloader />
           ) : (
@@ -94,8 +99,9 @@ function Register({ handleSubmitRegister, isLoading, errorInfo }) {
               <span className='register__form-error'>{errorMessage}</span>
               <button
                 type='submit'
-                className={`register__form-button ${isDisabled && 'register__form-button_disabled'
-                  }`}
+                className={`register__form-button ${
+                  isDisabled && 'register__form-button_disabled'
+                }`}
                 disabled={isDisabled}
                 onClick={handleSubmit}
               >

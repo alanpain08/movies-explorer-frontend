@@ -17,7 +17,7 @@ function useFormWithValidation() {
     if (name === 'email') {
       const REG_EX = /^[A-Z0-9._%+-]+@[A-Z0-9_-]+.+.[A-Z]{2,6}$/i;
       if (!REG_EX.test(value)) {
-        setErrors({ ...errors, [name]: 'Неверный формат электронной почты. Пример верного формата почты: "user@mail.ru"' })
+        setErrors({ ...errors, [name]: 'Неверный формат электронной почты. Пример верного формата: "user@mail.ru"' })
         setIsValid(false)
       }
     }
