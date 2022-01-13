@@ -4,19 +4,22 @@ import Preloader from '../Preloader/Preloader';
 import useFormWithValidation from '../../utils/formValidation';
 import { useEffect, useState } from 'react';
 
-function Register({ handleSubmitRegister, isLoading, errorInfo, setErrorInfo }) {
+function Register({ handleSubmitRegister, isLoading, errorInfo }) {
   const [errorMessage, setErrorMessage] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     name: '',
     email: '',
     password: '',
   });
 
-  const isDisabled =
-    values.name === '' ||
-    values.email === '' ||
-    values.password === '' ||
-    !isValid;
+  useEffect(() => {
+    (values.name === '' ||
+      values.email === '' ||
+      values.password === '' ||
+      !isValid) ? setIsDisabled(true) :
+      setIsDisabled(false);
+  }, [setIsDisabled, values.name, values.email, values.password, isValid])
 
   useEffect(() => {
     if (errorInfo) {
@@ -27,7 +30,7 @@ function Register({ handleSubmitRegister, isLoading, errorInfo, setErrorInfo }) 
   }, [errorInfo]);
 
   function hideErrorMessage() {
-    setErrorInfo(false)
+    setErrorMessage('')
   }
 
   const handleSubmit = (e) => {

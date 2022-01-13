@@ -16,7 +16,7 @@ function Header({ loggedIn }) {
 
   return (
     <header
-      className={`${(location.pathname === '/' && !loggedIn) ? 'header' : 'header header__logged'
+      className={`${location.pathname === '/' ? 'header' : 'header header__logged'
         }`}
     >
       <Link to='/'>

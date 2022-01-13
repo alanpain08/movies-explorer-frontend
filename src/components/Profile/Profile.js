@@ -1,18 +1,20 @@
 import useFormWithValidation from '../../utils/formValidation';
 import Preloader from '../Preloader/Preloader';
+import { useState, useEffect } from 'react';
 
 function Profile({ currentUser, signOut, handleUpdateUserInfo, isLoading }) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation({
-    name: currentUser.name,
-    email: currentUser.email,
-  });
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
-  const isDisabled =
-    currentUser.name === values.name ||
-    currentUser.email === values.email ||
-    values.name === '' ||
-    values.email === '' ||
-    !isValid;
+  useEffect(() => {
+    (
+      values.name === '' ||
+      values.email === '' ||
+      !isValid ||
+      (values.name === currentUser.name && values.email === currentUser.email)) ? setIsDisabled(true) :
+      setIsDisabled(false);
+  }, [setIsDisabled, values.name, values.email, isValid, currentUser.name, currentUser.email])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ function Profile({ currentUser, signOut, handleUpdateUserInfo, isLoading }) {
                   value={values.name}
                   required
                 />
+
               </div>
               <span className='profile__form-error'>{errors.name}</span>
               <div className='profile__form-li'>

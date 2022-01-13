@@ -4,25 +4,32 @@ import Preloader from '../Preloader/Preloader';
 import useFormWithValidation from '../../utils/formValidation';
 import { useEffect, useState } from 'react';
 
-function Login({ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }) {
+function Login({ handleSubmitLogin, isLoading, errorInfo }) {
   const [errorMessage, setErrorMessage] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
   const { values, handleChange, errors, isValid } = useFormWithValidation({
     email: '',
     password: '',
   });
 
-  const isDisabled = values.email === '' || values.password === '' || !isValid;
+  useEffect(() => {
+    (values.name === '' ||
+      values.email === '' ||
+      values.password === '' ||
+      !isValid) ? setIsDisabled(true) :
+      setIsDisabled(false);
+  }, [setIsDisabled, values.name, values.email, values.password, isValid])
 
   useEffect(() => {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
     } else {
-      setErrorMessage('');
+      setErrorMessage('')
     }
   }, [errorInfo]);
 
   function hideErrorMessage() {
-    setErrorInfo(false);
+    setErrorMessage('')
   }
 
   const handleSubmit = (e) => {
@@ -79,9 +86,8 @@ function Login({ handleSubmitLogin, isLoading, errorInfo, setErrorInfo }) {
               <span className='login__form-error'>{errorMessage}</span>
               <button
                 type='submit'
-                className={`login__form-button ${
-                  isDisabled && 'login__form-button_disabled'
-                }`}
+                className={`login__form-button ${isDisabled && 'login__form-button_disabled'
+                  }`}
                 disabled={isDisabled}
                 onClick={handleSubmit}
               >
