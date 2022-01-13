@@ -6,35 +6,28 @@ import { useEffect, useState } from 'react';
 
 function Register({ handleSubmitRegister, isLoading, errorInfo }) {
   const [errorMessage, setErrorMessage] = useState('');
-  const [isDisabled, setIsDisable] = useState(true);
-  const { values, handleChange, errors, isValid, setIsValid } = useFormWithValidation({
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { values, handleChange, errors, isValid } = useFormWithValidation({
     name: '',
     email: '',
     password: '',
   });
 
   useEffect(() => {
-    if (values.name === '' ||
-    values.name.length < 2 ||
-    values.email === '' ||
-    values.password === '' ||
-    values.password.length < 6 ||
-    !isValid ) {
-      setIsDisable(true)
-    } else {
-      setIsDisable(false)
-    }
-  }, [isValid, errorInfo, values.email, values.name, values.password])
+    (values.name === '' ||
+      values.email === '' ||
+      values.password === '' ||
+      !isValid) ? setIsDisabled(true) :
+      setIsDisabled(false);
+  }, [setIsDisabled, values.name, values.email, values.password, isValid])
 
   useEffect(() => {
     if (errorInfo) {
       setErrorMessage('Что-то пошло не так');
-      setIsValid(false);
     } else {
-      setErrorMessage('');
-      setIsValid(true);
+      setErrorMessage('')
     }
-  }, [errorInfo, setIsValid]);
+  }, [errorInfo]);
 
   function hideErrorMessage() {
     setErrorMessage('')
