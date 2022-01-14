@@ -15,6 +15,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { mainApi } from '../../utils/MainApi';
 import * as mainAuth from '../../utils/mainAuth';
 import * as moviesApi from '../../utils/MoviesApi';
+import InfoPopup from '../InfoPopup/InfoPopup';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,6 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [errorInfo, setErrorInfo] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,7 +40,7 @@ function App() {
     ) {
       navigate('/movies');
     }
-  }, [loggedIn]);
+  }, [loggedIn, navigate, location]);
 
   useEffect(() => {
     mainAuth.getContent()
@@ -141,8 +143,10 @@ function App() {
       .saveMovie(movie)
       .then((savedNewMovie) => {
         setSavedMovies([...savedMovies, savedNewMovie]);
+        localStorage.setItem('savedMovies', JSON.stringify([...savedMovies, savedNewMovie]));
       })
       .catch((err) => {
+        setIsOpen(true);
         console.log(err);
       });
   }
@@ -235,19 +239,23 @@ function App() {
     navigate('/');
   }
 
+  function closePopup() {
+    setIsOpen(false)
+  }
+
   return (
     <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
-          <Route path='/' element={<Layout {...{ loggedIn }} />}>
+          <Route exact path='/' element={<Layout {...{ loggedIn }} />}>
             <Route index element={<Main />} />
           </Route>
 
-          <Route path='movies' element={<Layout {...{ loggedIn }} />}>
+          <Route path='/movies' element={<Layout {...{ loggedIn }} />}>
             <Route
               index
               element={
-                <ProtectedRoute loggedIn={ loggedIn }>
+                <ProtectedRoute {...{ loggedIn }}>
                   <Movies
                     {...{
                       isLoading,
@@ -328,6 +336,10 @@ function App() {
           <Route path='*' element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>
+      <InfoPopup
+        isOpen={isOpen}
+        onClose={closePopup}
+      />
     </div>
   );
 }

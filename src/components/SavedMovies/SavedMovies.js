@@ -21,6 +21,16 @@ function SavedMovies({
     renderMovies.length === 0 ? setNotFound(true) : setNotFound(false);
   }, [renderMovies, setNotFound]);
 
+  /*useEffect(() => {
+    if (isFiltered) {
+      setRenderMovies(filteredShortMovies(savedMovies))
+      localStorage.setItem('savedMovies', JSON.stringify(filteredShortMovies(savedMovies)));
+    } else {
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+      setRenderMovies(savedMovies);
+    }
+  }, [isFiltered, localStorage]);*/
+
   useEffect(() => {
     isFiltered
       ? setRenderMovies(filteredShortMovies(savedMovies))
@@ -29,7 +39,7 @@ function SavedMovies({
 
   return (
     <main className='saved-movies'>
-      <SearchForm {...{ setIsFiltered }} onSearch={searchSavedMovies} />
+      <SearchForm {...{ setIsFiltered, isFiltered }} onSearch={searchSavedMovies} />
       <MoviesCardList
         {...{
           isLoading,

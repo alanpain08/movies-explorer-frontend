@@ -1,0 +1,89 @@
+.popup {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: linear 0.3s;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  font-family: "inter", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: linear 0.3s;
+}
+
+.popup__info {
+  box-sizing: border-box;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 60px 36px;
+  background-color: white;
+  border: 1px black;
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__info {
+    max-width: 282px;
+    padding: 25px 22px;
+  }
+}
+
+.popup__close {
+  background-image: url(../../../src/images/deleteButton.svg);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: transparent;
+  position: absolute;
+  top: -43px;
+  right: -43px;
+}
+
+.popup__close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: linear 0.3s;
+}
+
+@media screen and (max-width: 520px) {
+  .popup__close {
+    width: 26px;
+    height: 26px;
+    right: 8px;
+  }
+}
+
+.popup__info-title {
+  margin: auto;
+  text-align: center;
+  font-size: 24px;
+  line-height: 1.21;
+  font-weight: 900;
+}

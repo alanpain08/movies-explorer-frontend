@@ -1,9 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { mainApi } from '../utils/MainApi';
 
 function useFormWithValidation() {
   const [values, setValues] = React.useState({ name: '', email: '', password: '' });
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
+
+  useEffect(() => {
+    mainApi.getUserInfo()
+      .then((data) => {
+        if (data) {
+          setValues(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
 
   const checkValidation = (name, value) => {
     if (name === 'name') {
@@ -38,7 +51,8 @@ function useFormWithValidation() {
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
-    const value = target.value;
+    //const value = target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());

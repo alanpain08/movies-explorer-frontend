@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { movieHours, movieMinutes } from '../../../utils/constants';
 
 function MoviesCard({
   movie,
   savedMovies,
   handleMovieSave,
   handleMovieDelete,
+  isFiltered
 }) {
   let location = useLocation();
 
@@ -38,18 +40,17 @@ function MoviesCard({
         <div className='movies-card__container-text'>
           <h3 className='movies-card__title'>{movie.nameRU}</h3>
           <p className='movies-card__timing'>
-            {Math.floor(movie.duration / 60)}ч {movie.duration % 60}м
+            {movieHours(movie)}ч {movieMinutes(movie)}м
           </p>
         </div>
         {location.pathname === '/movies' ? (
           <button
             type='button'
             onClick={handleClick}
-            className={`${
-              isSaved
-                ? 'movies-card__button movies-card__button_saved'
-                : 'movies-card__button movies-card__button_save'
-            }`}
+            className={`${isSaved
+              ? 'movies-card__button movies-card__button_saved'
+              : 'movies-card__button movies-card__button_save'
+              }`}
           ></button>
         ) : (
           <button

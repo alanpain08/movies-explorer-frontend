@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 
 function Profile({ currentUser, signOut, handleUpdateUserInfo, isLoading }) {
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isIdentical, setIsIdentical] = useState(true);
   const { values, handleChange, errors, isValid } = useFormWithValidation({});
 
   useEffect(() => {
@@ -39,7 +38,7 @@ function Profile({ currentUser, signOut, handleUpdateUserInfo, isLoading }) {
                   placeholder={currentUser.name}
                   className='profile__form-input'
                   onChange={handleChange}
-                  value={values.name.length === 0 ? currentUser.name : values.name}
+                  value={values.name}
                   required
                 />
 
@@ -52,7 +51,7 @@ function Profile({ currentUser, signOut, handleUpdateUserInfo, isLoading }) {
                   name='email'
                   placeholder={currentUser.email}
                   className='profile__form-input'
-                  value={values.email.length === 0 ? currentUser.email : values.email}
+                  value={values.email}
                   onChange={handleChange}
                   required
                 />

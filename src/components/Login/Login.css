@@ -26,11 +26,11 @@
 }
 
 .login__form-li {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.login__form-li:last-of-type {
-  margin-bottom: 0;
+.login__form-li:first-of-type {
+  margin-top: 0;
 }
 
 .login__form-input {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ onSearch, setIsFiltered }) {
+function SearchForm({ onSearch, setIsFiltered, isFiltered }) {
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
 
@@ -35,7 +35,7 @@ function SearchForm({ onSearch, setIsFiltered }) {
         </div>
       </form>
       <span className='search__form-error'>{!search.value && error}</span>
-      <FilterCheckbox {...{ setIsFiltered }} />
+      <FilterCheckbox {...{ setIsFiltered, isFiltered }} />
     </section>
   );
 }

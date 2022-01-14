@@ -10,6 +10,7 @@ function MoviesCardList({
   notFound,
   handleMovieSave,
   handleMovieDelete,
+  isFiltered
 }) {
   const [moviesQuantity, setMoviesQuantity] = useState(12);
   const [moviesAddQuantity, setMoviesAddQuantity] = useState(3);
@@ -65,6 +66,7 @@ function MoviesCardList({
                   savedMovies={savedMovies}
                   handleMovieSave={handleMovieSave}
                   handleMovieDelete={handleMovieDelete}
+                  isFiltered={isFiltered}
                 />
               ))}
         </ul>
