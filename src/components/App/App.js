@@ -18,7 +18,7 @@ import * as moviesApi from '../../utils/MoviesApi';
 import InfoPopup from '../InfoPopup/InfoPopup';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
