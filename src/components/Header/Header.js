@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 
-function Header() {
+function Header({ loggedIn }) {
   let location = useLocation();
 
   const isMobileDevice = useMediaQuery({
@@ -24,12 +24,12 @@ function Header() {
       </Link>
 
       <div
-        className={`${location.pathname === '/'
+        className={`${(location.pathname === '/' && !loggedIn)
           ? 'header__nav'
           : 'header__nav header__nav-logged'
           }`}
       >
-        {location.pathname === '/' ? (
+        {!loggedIn ? (
           <>
             <Link to='/signup' className='header__link-main'>
               Регистрация

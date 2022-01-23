@@ -26,11 +26,11 @@
 }
 
 .register__form-li {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.register__form-li:last-of-type {
-  margin-bottom: 0;
+.register__form-li:first-of-type {
+  margin-top: 0;
 }
 
 .register__form-input {
@@ -45,7 +45,7 @@
   box-sizing: border-box;
 }
 
-.register__form-input-error {
+.register__form-error {
   font-size: 10px;
   line-height: 1.21;
   color: #ff4062;
@@ -64,6 +64,11 @@
   font-size: 14px;
   line-height: 1.21;
   margin-top: 69px;
+}
+
+.register__form-button_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
 }
 
 .register__form-button:hover {
