@@ -63,8 +63,9 @@
   width: 270px;
   height: 327px;
   margin-left: auto;
-  background-image: url(../../../images/photo.svg);
+  background-image: url(../../../images/photo.jpg);
   background-size: cover;
+  background-position: center;
 }
 
 @media screen and (max-width: 1040px) {
